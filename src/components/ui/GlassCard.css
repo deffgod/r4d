@@ -1,0 +1,58 @@
+.glass-card-component {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-base);
+}
+
+.glass-card-hover {
+  cursor: pointer;
+}
+
+.glass-card-hover:hover {
+  border-color: var(--neon-primary);
+  box-shadow: 0 8px 32px var(--shadow-lg),
+              0 0 20px var(--neon-glow);
+}
+
+.glass-card-glow {
+  box-shadow: 0 0 10px var(--neon-glow),
+              0 0 20px var(--neon-glow);
+}
+
+.glass-card-glow:hover {
+  box-shadow: 0 0 15px var(--neon-glow-strong),
+              0 0 30px var(--neon-glow-strong),
+              0 8px 32px var(--shadow-lg);
+}
+
+/* Holographic Shimmer Overlay */
+.glass-card-component.holographic::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    var(--holographic-1) 50%,
+    transparent 70%
+  );
+  animation: holographicShimmer 4s linear infinite;
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .glass-card-component {
+    padding: var(--spacing-lg);
+  }
+}
+

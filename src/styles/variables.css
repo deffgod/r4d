@@ -2,6 +2,10 @@
   /* Colors - Light Theme */
   --primary: #4E3AFB;
   --primary-hover: #3D2DE8;
+  --accent: #6B4EFF;
+  --accent-light: #8B6EFF;
+  --success: #00D9A3;
+  --warning: #FFB800;
   --background: #FFFFFF;
   --surface: #F5F5F7;
   --text-primary: #000000;
@@ -10,6 +14,20 @@
   --border: #E0E0E0;
   --shadow: rgba(0, 0, 0, 0.1);
   --shadow-lg: rgba(0, 0, 0, 0.15);
+  
+  /* Tech Theme - Light */
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(78, 58, 251, 0.2);
+  --neon-primary: #4E3AFB;
+  --neon-glow: rgba(78, 58, 251, 0.4);
+  --neon-glow-strong: rgba(78, 58, 251, 0.8);
+  --grid-color: rgba(78, 58, 251, 0.08);
+  --holographic-1: rgba(78, 58, 251, 0.6);
+  --holographic-2: rgba(107, 78, 255, 0.6);
+  --holographic-3: rgba(139, 110, 255, 0.6);
+  --tech-gradient-1: linear-gradient(135deg, #4E3AFB 0%, #6B4EFF 100%);
+  --tech-gradient-2: linear-gradient(135deg, #6B4EFF 0%, #8B6EFF 100%);
+  --scan-line: rgba(78, 58, 251, 0.3);
   
   /* Spacing */
   --spacing-xs: 0.5rem;
@@ -64,4 +82,18 @@
   --border: #2A2A2A;
   --shadow: rgba(0, 0, 0, 0.3);
   --shadow-lg: rgba(0, 0, 0, 0.5);
+  
+  /* Tech Theme - Dark */
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(107, 78, 255, 0.3);
+  --neon-primary: #6B4EFF;
+  --neon-glow: rgba(107, 78, 255, 0.6);
+  --neon-glow-strong: rgba(107, 78, 255, 1);
+  --grid-color: rgba(107, 78, 255, 0.15);
+  --holographic-1: rgba(107, 78, 255, 0.8);
+  --holographic-2: rgba(139, 110, 255, 0.8);
+  --holographic-3: rgba(171, 142, 255, 0.8);
+  --tech-gradient-1: linear-gradient(135deg, #6B4EFF 0%, #8B6EFF 100%);
+  --tech-gradient-2: linear-gradient(135deg, #8B6EFF 0%, #AB8EFF 100%);
+  --scan-line: rgba(107, 78, 255, 0.5);
 }

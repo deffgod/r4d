@@ -1,0 +1,38 @@
+.holographic-text {
+  position: relative;
+  display: inline-block;
+}
+
+.holographic-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--holographic-1) 0%,
+    var(--holographic-2) 50%,
+    var(--holographic-3) 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.holographic-shimmer {
+  animation: holographicShimmer 3s ease-in-out infinite;
+}
+
+.holographic-glow {
+  text-shadow: 0 0 10px var(--neon-glow),
+               0 0 20px var(--neon-glow),
+               0 0 30px var(--neon-glow);
+  -webkit-text-fill-color: var(--neon-primary);
+}
+
+/* Combined Effects */
+.holographic-gradient.holographic-shimmer {
+  animation: holographicShimmer 4s ease-in-out infinite;
+}
+
+.holographic-text.holographic-glow {
+  filter: drop-shadow(0 0 10px var(--neon-glow));
+}
+

@@ -1,0 +1,122 @@
+.tech-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  border: 2px solid;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  overflow: hidden;
+  transition: all var(--transition-base);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: transparent;
+}
+
+.tech-button-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Variants */
+.tech-button-primary {
+  background: var(--tech-gradient-1);
+  border-color: var(--neon-primary);
+  color: white;
+}
+
+.tech-button-secondary {
+  background: transparent;
+  border-color: var(--neon-primary);
+  color: var(--neon-primary);
+}
+
+.tech-button-ghost {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border-color: var(--glass-border);
+  color: var(--text-primary);
+}
+
+/* Sizes */
+.tech-button-sm {
+  padding: var(--spacing-xs) var(--spacing-md);
+  font-size: var(--font-size-sm);
+}
+
+.tech-button-md {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-size: var(--font-size-base);
+}
+
+.tech-button-lg {
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-size: var(--font-size-lg);
+}
+
+/* Glow Effect */
+.tech-button-glow {
+  box-shadow: 0 0 10px var(--neon-glow),
+              0 0 20px var(--neon-glow);
+}
+
+.tech-button-glow:hover {
+  box-shadow: 0 0 15px var(--neon-glow-strong),
+              0 0 30px var(--neon-glow-strong),
+              0 0 45px var(--neon-glow);
+}
+
+/* Scan Line Animation */
+.tech-button-scan {
+  overflow: hidden;
+}
+
+.scan-line-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+  animation: scanLine 2s linear infinite;
+  z-index: 1;
+}
+
+/* Hover Effects */
+.tech-button-primary:hover {
+  background: var(--tech-gradient-2);
+  transform: translateY(-2px);
+}
+
+.tech-button-secondary:hover {
+  background: var(--neon-primary);
+  color: white;
+}
+
+.tech-button-ghost:hover {
+  background: var(--glass-bg);
+  border-color: var(--neon-primary);
+  box-shadow: 0 0 20px var(--neon-glow);
+}
+
+/* Disabled State */
+.tech-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+@media (max-width: 768px) {
+  .tech-button-lg {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    font-size: var(--font-size-base);
+  }
+}
+

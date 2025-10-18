@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../../contexts/LanguageContext';
-import { Button } from '../ui/Button';
+import { TechButton } from '../ui/TechButton';
+import { HolographicText } from '../ui/HolographicText';
 import { LiquidCrystalBackground } from '../ui/LiquidCrystalBackground';
 import './HeroSection.css';
 
@@ -17,7 +18,10 @@ export const HeroSection = () => {
           smoothK={[0.25, 0.3]}
           className="hero-liquid-bg"
         />
+        <div className="hero-tech-grid"></div>
       </div>
+      
+      <div className="hero-scan-line"></div>
 
       <div className="container">
         <motion.div 
@@ -26,14 +30,20 @@ export const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <motion.h1 
+          <HolographicText 
+            as="h1"
             className="hero-title"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            gradient={true}
+            shimmer={true}
           >
-            {t.hero.title}
-          </motion.h1>
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              {t.hero.title}
+            </motion.span>
+          </HolographicText>
 
           <motion.div 
             className="hero-subtitle"
@@ -52,8 +62,12 @@ export const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <Button size="lg">{t.hero.buttons.primary}</Button>
-            <Button variant="secondary" size="lg">{t.hero.buttons.secondary}</Button>
+            <TechButton size="lg" glow={true} scan={true}>
+              {t.hero.buttons.primary}
+            </TechButton>
+            <TechButton variant="secondary" size="lg" glow={true}>
+              {t.hero.buttons.secondary}
+            </TechButton>
           </motion.div>
         </motion.div>
       </div>
