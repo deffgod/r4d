@@ -383,3 +383,51 @@
   background-size: 50px 50px;
   animation: gridPulse 4s ease-in-out infinite;
 }
+
+/* ========================================
+   ACCESSIBILITY: REDUCED MOTION SUPPORT
+   ======================================== */
+
+/**
+ * Respects user's motion preferences for accessibility
+ * Removes or reduces animations for users who prefer reduced motion
+ * This is critical for WCAG 2.1 compliance and users with vestibular disorders
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Keep opacity transitions but remove transforms */
+  .animate-fade-in-up,
+  .animate-fade-in-down,
+  .animate-fade-in-left,
+  .animate-fade-in-right {
+    animation: fadeIn 0.01ms !important;
+  }
+
+  /* Disable continuous animations */
+  .animate-float,
+  .animate-pulse,
+  .animate-glow-pulse,
+  .animate-holographic,
+  .animate-scan,
+  .animate-glitch,
+  .animate-neon-flicker,
+  .animate-floating-tech,
+  .animate-holographic-border,
+  .tech-grid {
+    animation: none !important;
+  }
+
+  /* Remove hover transforms but keep opacity/color changes */
+  .hover-lift:hover,
+  .hover-scale:hover {
+    transform: none !important;
+  }
+}

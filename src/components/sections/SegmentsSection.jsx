@@ -69,6 +69,7 @@ export const SegmentsSection = () => {
                   src={segmentIcons[segment] || '/coolshapes/CS_Misc_5.png'}
                   alt={segment}
                   className="segment-icon"
+                  loading="lazy"
                   whileHover={{ 
                     rotate: [0, -10, 10, -10, 0],
                     scale: 1.1,
