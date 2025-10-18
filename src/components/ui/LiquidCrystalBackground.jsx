@@ -62,7 +62,18 @@ void main() {
 }
 `;
 
-export const LiquidCrystalBackground = ({
+/**
+ * LiquidCrystalBackground Component
+ * Renders an animated WebGL2 liquid crystal effect with metaballs
+ * Uses GPU-accelerated shaders for smooth 60fps performance
+ * 
+ * @param {number} speed - Animation speed multiplier (default: 0.5)
+ * @param {number[]} radii - Array of 3 circle radii for metaballs (default: [0.2, 0.15, 0.22])
+ * @param {number[]} smoothK - Array of 2 smoothing factors for blending (default: [0.2, 0.25])
+ * @param {string} className - Additional CSS classes
+ * @returns {JSX.Element} WebGL canvas with animated liquid crystal effect
+ */
+const LiquidCrystalBackgroundComponent = ({
   speed = 0.5,
   radii = [0.2, 0.15, 0.22],
   smoothK = [0.2, 0.25],
@@ -175,4 +186,10 @@ export const LiquidCrystalBackground = ({
     </div>
   );
 };
+
+/**
+ * Memoized version to prevent unnecessary re-renders
+ * Only re-renders when speed, radii, smoothK, or className props change
+ */
+export const LiquidCrystalBackground = React.memo(LiquidCrystalBackgroundComponent);
 
