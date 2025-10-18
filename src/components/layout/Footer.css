@@ -8,6 +8,23 @@
   text-align: center;
 }
 
+.footer-brand {
+  margin-bottom: var(--spacing-2xl);
+  display: flex;
+  justify-content: center;
+}
+
+.footer-logo {
+  height: 40px;
+  width: auto;
+  transition: all var(--transition-base);
+}
+
+.footer-logo:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 10px var(--neon-glow));
+}
+
 .footer-slogan {
   margin-bottom: var(--spacing-2xl);
 }

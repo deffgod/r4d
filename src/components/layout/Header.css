@@ -30,9 +30,28 @@
   height: 80px;
 }
 
-.header-logo img {
-  height: 40px;
+.header-logo {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: transform var(--transition-fast);
+}
+
+.header-logo:hover {
+  transform: scale(1.05);
+}
+
+.header-logo-image {
+  height: 32px;
   width: auto;
+  transition: filter var(--transition-fast);
+}
+
+.header-logo:hover .header-logo-image {
+  filter: drop-shadow(0 0 8px var(--neon-glow));
 }
 
 .header-nav {

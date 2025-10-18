@@ -23,6 +23,42 @@
   min-height: calc(100vh - 80px);
 }
 
+.burger-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: var(--spacing-lg);
+  border-bottom: 2px solid var(--border);
+}
+
+.burger-menu-logo {
+  height: 28px;
+  width: auto;
+}
+
+.burger-menu-close {
+  background: transparent;
+  border: 2px solid var(--border);
+  color: var(--text-primary);
+  font-size: 2rem;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-base);
+  line-height: 1;
+  padding: 0;
+}
+
+.burger-menu-close:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  transform: rotate(90deg);
+}
+
 .burger-menu-nav {
   display: flex;
   flex-direction: column;

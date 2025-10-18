@@ -6,24 +6,63 @@ import './StatsSection.css';
 
 /**
  * StatsSection Component
- * Clean minimal design with subtle animations
- * Focus on typography and clean card layout
+ * Modern feature cards design inspired by 21st.dev
+ * 2x2 grid layout on desktop, stacked on mobile
+ * Preserves all text content with enhanced visual design
  */
 
-// Individual Stat Card - Clean and Simple
+// Individual Stat Card with hover effects
 const StatCard = ({ stat, index, inView }) => {
-  // Card animation variants
+  // Staggered entrance animation
   const cardVariants = useMemo(() => ({
     hidden: { 
       opacity: 0, 
-      y: 20
+      y: 40,
+      scale: 0.95
     },
     visible: { 
       opacity: 1, 
       y: 0,
+      scale: 1,
       transition: {
-        duration: 0.6,
-        delay: index * 0.1,
+        type: "spring",
+        stiffness: 80,
+        damping: 15,
+        delay: index * 0.12
+      }
+    }
+  }), [index]);
+
+  // Value pop-in animation
+  const valueVariants = useMemo(() => ({
+    hidden: { 
+      scale: 0.5,
+      opacity: 0
+    },
+    visible: { 
+      scale: 1,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 150,
+        damping: 12,
+        delay: index * 0.12 + 0.2
+      }
+    }
+  }), [index]);
+
+  // Label fade-in animation
+  const labelVariants = useMemo(() => ({
+    hidden: { 
+      opacity: 0,
+      y: 10
+    },
+    visible: { 
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        delay: index * 0.12 + 0.4,
         ease: "easeOut"
       }
     }
@@ -35,32 +74,51 @@ const StatCard = ({ stat, index, inView }) => {
       variants={cardVariants}
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
-      whileHover={{ y: -5 }}
-      transition={{ duration: 0.2 }}
+      whileHover={{ 
+        y: -8,
+        transition: { duration: 0.3, ease: "easeOut" }
+      }}
     >
+      {/* Top gradient accent line */}
+      <div className="stat-card-accent" />
+      
+      {/* Subtle animated background gradient */}
+      <motion.div 
+        className="stat-card-gradient"
+        animate={{
+          opacity: [0.8, 1, 0.8],
+          scale: [1, 1.1, 1]
+        }}
+        transition={{
+          duration: 4,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+
+      {/* Content */}
       <div className="stat-content">
         <motion.h3 
           className="stat-value"
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={inView ? { scale: 1, opacity: 1 } : {}}
-          transition={{ 
-            delay: index * 0.1 + 0.2,
-            duration: 0.5,
-            ease: "easeOut"
-          }}
+          variants={valueVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
         >
           {stat.value}
         </motion.h3>
         
         <motion.p 
           className="stat-label"
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ delay: index * 0.1 + 0.4 }}
+          variants={labelVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
         >
           {stat.label}
         </motion.p>
       </div>
+
+      {/* Shine effect on hover */}
+      <div className="stat-card-shine" />
     </motion.div>
   );
 };
@@ -69,27 +127,36 @@ export const StatsSection = () => {
   const { t } = useLanguage();
   const { ref, inView } = useScrollAnimation();
 
-  // Memoize animations
-  const titleVariant = useMemo(() => ({
-    hidden: { opacity: 0, y: 20 },
+  // Title animation
+  const titleVariants = useMemo(() => ({
+    hidden: { 
+      opacity: 0, 
+      y: 30,
+      scale: 0.95
+    },
     visible: { 
       opacity: 1, 
       y: 0,
+      scale: 1,
       transition: {
-        duration: 0.6,
+        duration: 0.7,
         ease: "easeOut"
       }
     }
   }), []);
 
-  const taglineVariant = useMemo(() => ({
-    hidden: { opacity: 0, y: 15 },
+  // Tagline animation
+  const taglineVariants = useMemo(() => ({
+    hidden: { 
+      opacity: 0, 
+      y: 20
+    },
     visible: { 
       opacity: 1, 
       y: 0,
       transition: {
         duration: 0.6,
-        delay: 0.3,
+        delay: 0.6,
         ease: "easeOut"
       }
     }
@@ -97,21 +164,23 @@ export const StatsSection = () => {
 
   return (
     <section id="about" className="stats-section section" ref={ref}>
-      {/* Subtle background pattern */}
+      {/* Subtle dotted background pattern */}
       <div className="stats-bg">
         <div className="stats-grid"></div>
       </div>
 
       <div className="container">
+        {/* Section Title */}
         <motion.h2 
           className="stats-title"
-          variants={titleVariant}
+          variants={titleVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
         >
           {t.stats.title}
         </motion.h2>
 
+        {/* Stats Grid - 2x2 on desktop, stacked on mobile */}
         <div className="stats-grid">
           {t.stats.items.map((stat, index) => (
             <StatCard 
@@ -123,9 +192,10 @@ export const StatsSection = () => {
           ))}
         </div>
 
+        {/* Tagline with decorative quotes */}
         <motion.p 
           className="stats-tagline"
-          variants={taglineVariant}
+          variants={taglineVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
         >

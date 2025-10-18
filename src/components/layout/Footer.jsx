@@ -1,14 +1,23 @@
 import React from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { useTheme } from '../../contexts/ThemeContext';
 import './Footer.css';
 
 export const Footer = () => {
   const { t } = useLanguage();
+  const { theme } = useTheme();
+
+  const logoSrc = theme === 'dark' ? '/logo/R4D-white.svg' : '/logo/R4D-indigo.svg';
 
   return (
     <footer className="footer">
       <div className="container">
         <div className="footer-content">
+          {/* Логотип в футере */}
+          <div className="footer-brand">
+            <img src={logoSrc} alt="R4D" className="footer-logo" />
+          </div>
+
           <div className="footer-slogan">
             {t.footer.slogan.map((line, index) => (
               <p key={index}>{line}</p>

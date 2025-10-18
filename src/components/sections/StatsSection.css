@@ -1,28 +1,27 @@
 /* ========================================
-   STATS SECTION - Clean Minimal Tech
+   STATS SECTION - Modern Feature Cards
    ======================================== */
 
 .stats-section {
   position: relative;
-  padding: 120px 0;
+  padding: 100px 0;
   background: var(--background);
   overflow: hidden;
 }
 
-/* Subtle background pattern */
+/* Animated background gradient orbs */
 .stats-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
-  opacity: 0.3;
+  overflow: hidden;
 }
 
 .stats-grid {
   position: absolute;
   inset: 0;
   background-image: 
-    linear-gradient(var(--border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    radial-gradient(circle at 2px 2px, var(--border) 1px, transparent 0);
   background-size: 50px 50px;
   opacity: 0.2;
 }
@@ -37,104 +36,260 @@
   z-index: 1;
 }
 
-/* Title */
+/* Title - Bold and Centered */
 .stats-title {
   font-family: var(--font-heading);
   font-size: clamp(2.5rem, 6vw, 4rem);
-  font-weight: 700;
+  font-weight: 800;
   text-align: center;
-  margin-bottom: 5rem;
+  margin-bottom: 4rem;
   color: var(--text-primary);
   letter-spacing: -0.02em;
   line-height: 1.1;
+  text-transform: uppercase;
 }
 
-/* Stats Grid */
+/* Stats Grid - 2x2 layout */
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
   max-width: 1000px;
   margin: 0 auto 4rem;
 }
 
-/* Stat Card - Clean Design */
+/* Stat Card - Clean Modern Design */
 .stat-card {
   position: relative;
   background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 2.5rem 2rem;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 3rem 2.5rem;
   text-align: center;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  cursor: default;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.05),
+    0 1px 3px rgba(0, 0, 0, 0.03);
 }
 
+/* Card number indicator */
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--primary) 0%,
+    var(--accent) 50%,
+    var(--accent-light) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.stat-card:hover::before {
+  opacity: 1;
+}
+
+/* Gradient accent decorative element */
+.stat-card-accent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--primary),
+    var(--accent),
+    var(--accent-light)
+  );
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.stat-card:hover .stat-card-accent {
+  transform: scaleX(1);
+}
+
+/* Animated background gradient - subtle pulse */
+.stat-card-gradient {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  height: 150%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    circle,
+    rgba(78, 58, 251, 0.08) 0%,
+    rgba(107, 78, 255, 0.04) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+[data-theme="dark"] .stat-card-gradient {
+  background: radial-gradient(
+    circle,
+    rgba(107, 78, 255, 0.12) 0%,
+    rgba(139, 110, 255, 0.06) 40%,
+    transparent 70%
+  );
+}
+
+/* Shine effect on hover */
+.stat-card-shine {
+  position: absolute;
+  top: -50%;
+  left: -100%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: left 0.7s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.stat-card:hover .stat-card-shine {
+  left: 150%;
+}
+
+/* Card hover state - lift effect */
 .stat-card:hover {
   border-color: var(--primary);
-  box-shadow: 0 8px 30px rgba(78, 58, 251, 0.1);
-  transform: translateY(-5px);
+  box-shadow: 
+    0 20px 40px rgba(78, 58, 251, 0.12),
+    0 8px 16px rgba(78, 58, 251, 0.08);
+  transform: translateY(-8px);
 }
 
 [data-theme="dark"] .stat-card {
-  background: var(--surface);
+  background: rgba(255, 255, 255, 0.03);
   border-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.3),
+    0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 [data-theme="dark"] .stat-card:hover {
+  background: rgba(255, 255, 255, 0.05);
   border-color: var(--primary);
-  box-shadow: 0 8px 30px rgba(78, 58, 251, 0.2);
+  box-shadow: 
+    0 20px 40px rgba(78, 58, 251, 0.25),
+    0 8px 16px rgba(78, 58, 251, 0.15);
 }
 
 /* Card Content */
 .stat-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
-/* Stat Value */
+/* Stat Value - Large and Bold with Gradient */
 .stat-value {
   font-family: var(--font-heading);
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  font-weight: 800;
+  font-size: clamp(3rem, 10vw, 5.5rem);
+  font-weight: 900;
   line-height: 1;
-  margin-bottom: 1rem;
-  color: var(--primary);
-  letter-spacing: -0.02em;
+  margin-bottom: 1.25rem;
+  background: linear-gradient(
+    135deg,
+    var(--primary) 0%,
+    var(--accent) 50%,
+    var(--accent-light) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.04em;
+  display: inline-block;
 }
 
-/* Stat Label */
+[data-theme="dark"] .stat-value {
+  background: linear-gradient(
+    135deg,
+    #6B4EFF 0%,
+    #8B6EFF 50%,
+    #AB8EFF 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Stat Label - Clean Typography */
 .stat-label {
-  font-family: var(--font-heading);
-  font-size: clamp(0.9rem, 2vw, 1rem);
+  font-family: var(--font-primary);
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   color: var(--text-secondary);
   margin: 0;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
-/* Tagline */
+/* Tagline - Centered Quote */
 .stats-tagline {
   text-align: center;
   font-family: var(--font-heading);
-  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-  font-weight: 500;
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 600;
   color: var(--text-primary);
-  margin: 0;
+  margin: 0 auto;
   letter-spacing: -0.01em;
   line-height: 1.5;
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: 800px;
+  padding: 2.5rem 1.5rem;
+  position: relative;
+}
+
+/* Decorative quotes */
+.stats-tagline::before,
+.stats-tagline::after {
+  font-family: Georgia, serif;
+  font-size: 4rem;
+  line-height: 0;
+  color: var(--primary);
+  opacity: 0.15;
+  position: absolute;
+}
+
+.stats-tagline::before {
+  content: '"';
+  top: 0;
+  left: 0;
+}
+
+.stats-tagline::after {
+  content: '"';
+  bottom: 1rem;
+  right: 0;
 }
 
 /* Responsive Design */
 @media (max-width: 1024px) {
   .stats-grid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
+    gap: 1.75rem;
+    max-width: 800px;
+  }
+
+  .stat-card {
+    padding: 2.5rem 2rem;
   }
 }
 
@@ -145,38 +300,50 @@
 
   .stats-title {
     margin-bottom: 3rem;
-  }
-
-  .stats-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-  }
-
-  .stat-card {
-    padding: 2rem 1.5rem;
-  }
-
-  .stat-value {
     font-size: clamp(2rem, 8vw, 3rem);
   }
 
-  .stat-label {
-    font-size: 0.85rem;
-  }
-
-  .stats-tagline {
-    margin-top: 3rem;
-  }
-}
-
-@media (max-width: 480px) {
   .stats-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
 
   .stat-card {
+    padding: 2.5rem 2rem;
+  }
+
+  .stat-value {
+    font-size: clamp(2.5rem, 12vw, 4rem);
+    margin-bottom: 1rem;
+  }
+
+  .stat-label {
+    font-size: 0.9rem;
+  }
+
+  .stats-tagline {
+    font-size: 1.15rem;
+    padding: 2rem 1rem;
+  }
+
+  .stats-tagline::before,
+  .stats-tagline::after {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .stat-card {
     padding: 2rem 1.5rem;
+  }
+
+  .stat-value {
+    font-size: clamp(2.25rem, 15vw, 3.5rem);
+  }
+
+  .stat-label {
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
   }
 }
 
@@ -189,16 +356,29 @@
   .stat-card:hover {
     transform: none;
   }
+
+  .stat-card-shine,
+  .stat-card-gradient,
+  .stat-card-accent {
+    animation: none !important;
+    transition: none;
+  }
 }
 
 /* Performance Optimization */
-.stat-card {
-  will-change: transform;
+.stat-card,
+.stat-card-shine,
+.stat-card-gradient,
+.stat-card-accent {
+  will-change: transform, opacity;
 }
 
 /* Print Styles */
 @media print {
-  .stats-bg {
+  .stats-bg,
+  .stat-card-accent,
+  .stat-card-gradient,
+  .stat-card-shine {
     display: none;
   }
 
@@ -206,5 +386,16 @@
     break-inside: avoid;
     border: 1px solid #ccc;
     box-shadow: none;
+    transform: none !important;
+  }
+
+  .stat-value {
+    -webkit-text-fill-color: var(--primary);
+    background: none;
+  }
+
+  .stats-tagline::before,
+  .stats-tagline::after {
+    display: none;
   }
 }

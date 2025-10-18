@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLanguage } from '../../contexts/LanguageContext';
+import { useTheme } from '../../contexts/ThemeContext';
 import { ThemeToggle } from '../ui/ThemeToggle';
 import { LanguageToggle } from '../ui/LanguageToggle';
 import { Button } from '../ui/Button';
@@ -7,6 +8,7 @@ import './BurgerMenu.css';
 
 export const BurgerMenu = ({ isOpen, onClose, onNavClick }) => {
   const { t } = useLanguage();
+  const { theme } = useTheme();
 
   useEffect(() => {
     if (isOpen) {
@@ -25,9 +27,23 @@ export const BurgerMenu = ({ isOpen, onClose, onNavClick }) => {
     onClose();
   };
 
+  const logoSrc = theme === 'dark' ? '/logo/R4D-white.svg' : '/logo/R4D-indigo.svg';
+
   return (
     <div className={`burger-menu ${isOpen ? 'burger-menu-open' : ''}`}>
       <div className="burger-menu-content">
+        {/* Logo в мобильном меню */}
+        <div className="burger-menu-header">
+          <img src={logoSrc} alt="R4D" className="burger-menu-logo" />
+          <button 
+            className="burger-menu-close"
+            onClick={onClose}
+            aria-label="Close menu"
+          >
+            ×
+          </button>
+        </div>
+
         <nav className="burger-menu-nav">
           {t.header.nav.map((item) => (
             <button

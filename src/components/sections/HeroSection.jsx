@@ -39,9 +39,34 @@ export const HeroSection = () => {
 
   return (
     <section id="home" className="hero-section">
-      {/* Subtle background pattern */}
+      {/* Animated background elements */}
       <div className="hero-bg">
         <div className="hero-grid"></div>
+        <motion.div 
+          className="hero-gradient-orb hero-gradient-orb-1"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        <motion.div 
+          className="hero-gradient-orb hero-gradient-orb-2"
+          animate={{
+            scale: [1, 1.3, 1],
+            opacity: [0.2, 0.4, 0.2],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1
+          }}
+        />
       </div>
 
       <div className="container">
@@ -53,7 +78,7 @@ export const HeroSection = () => {
             className="hero-title"
             {...titleVariant}
           >
-            {t.hero.title}
+            <span className="hero-title-gradient">{t.hero.title}</span>
           </motion.h1>
 
           <motion.div 
