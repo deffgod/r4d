@@ -1,0 +1,123 @@
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding-top: 80px;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.25;
+  overflow: hidden;
+}
+
+.hero-liquid-bg {
+  width: 100%;
+  height: 100%;
+  filter: blur(40px) saturate(1.5);
+  transform: scale(1.1);
+}
+
+.hero-shape {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 30px var(--primary));
+}
+
+.hero-shape-1 {
+  top: 10%;
+  left: 10%;
+}
+
+.hero-shape-2 {
+  top: 60%;
+  right: 15%;
+}
+
+.hero-shape-3 {
+  bottom: 15%;
+  left: 20%;
+}
+
+.hero-content {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero-content::before {
+  content: '';
+  position: absolute;
+  inset: -100%;
+  background: radial-gradient(
+    circle at center,
+    transparent 0%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+  z-index: -1;
+  pointer-events: none;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 8vw, 7rem);
+  font-weight: 700;
+  margin-bottom: var(--spacing-xl);
+  background: linear-gradient(135deg, var(--primary), var(--text-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.hero-subtitle {
+  margin-bottom: var(--spacing-2xl);
+}
+
+.hero-subtitle p {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  font-weight: 500;
+  margin: var(--spacing-sm) 0;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: var(--spacing-lg);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: calc(100vh - 60px);
+  }
+
+  .hero-shape {
+    width: 100px;
+    height: 100px;
+  }
+
+  .hero-subtitle p {
+    font-size: var(--font-size-base);
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-buttons button {
+    width: 100%;
+  }
+}

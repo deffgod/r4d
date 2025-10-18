@@ -1,0 +1,19 @@
+.language-toggle {
+  background: transparent;
+  border: 2px solid var(--primary);
+  color: var(--primary);
+  cursor: pointer;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-base);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.language-toggle:hover {
+  background: var(--primary);
+  color: white;
+  transform: scale(1.05);
+}
