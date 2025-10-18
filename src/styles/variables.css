@@ -1,5 +1,5 @@
 :root {
-  /* Colors - Light Theme */
+  /* Colors - Light Theme - Enhanced Vibrant Palette */
   --primary: #4E3AFB;
   --primary-hover: #3D2DE8;
   --accent: #6B4EFF;
@@ -7,27 +7,27 @@
   --success: #00D9A3;
   --warning: #FFB800;
   --background: #FFFFFF;
-  --surface: #F5F5F7;
-  --text-primary: #000000;
-  --text-secondary: #666666;
-  --text-tertiary: #999999;
-  --border: #E0E0E0;
-  --shadow: rgba(0, 0, 0, 0.1);
-  --shadow-lg: rgba(0, 0, 0, 0.15);
+  --surface: #F8F9FF;
+  --text-primary: #1A1A1A;
+  --text-secondary: #4A4A4A;
+  --text-tertiary: #7A7A7A;
+  --border: #E5E7FF;
+  --shadow: rgba(78, 58, 251, 0.08);
+  --shadow-lg: rgba(78, 58, 251, 0.12);
   
-  /* Tech Theme - Light */
-  --glass-bg: rgba(255, 255, 255, 0.1);
-  --glass-border: rgba(78, 58, 251, 0.2);
+  /* Tech Theme - Light - More Vibrant */
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(78, 58, 251, 0.25);
   --neon-primary: #4E3AFB;
-  --neon-glow: rgba(78, 58, 251, 0.4);
-  --neon-glow-strong: rgba(78, 58, 251, 0.8);
-  --grid-color: rgba(78, 58, 251, 0.08);
-  --holographic-1: rgba(78, 58, 251, 0.6);
-  --holographic-2: rgba(107, 78, 255, 0.6);
-  --holographic-3: rgba(139, 110, 255, 0.6);
+  --neon-glow: rgba(78, 58, 251, 0.5);
+  --neon-glow-strong: rgba(78, 58, 251, 0.9);
+  --grid-color: rgba(78, 58, 251, 0.12);
+  --holographic-1: #4E3AFB;
+  --holographic-2: #6B4EFF;
+  --holographic-3: #8B6EFF;
   --tech-gradient-1: linear-gradient(135deg, #4E3AFB 0%, #6B4EFF 100%);
   --tech-gradient-2: linear-gradient(135deg, #6B4EFF 0%, #8B6EFF 100%);
-  --scan-line: rgba(78, 58, 251, 0.3);
+  --scan-line: rgba(78, 58, 251, 0.6);
   
   /* Spacing */
   --spacing-xs: 0.5rem;
@@ -53,11 +53,12 @@
   --font-size-5xl: 4.5rem;
   --font-size-6xl: 6rem;
   
-  /* Border Radius */
-  --radius-sm: 0.5rem;
+  /* Border Radius - Smooth Modern Curves */
+  --radius-sm: 0.75rem;
   --radius-md: 1rem;
   --radius-lg: 1.5rem;
   --radius-xl: 2rem;
+  --radius-2xl: 2.5rem;
   --radius-full: 9999px;
   
   /* Transitions */

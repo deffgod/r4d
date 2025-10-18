@@ -1,3 +1,7 @@
+/* ========================================
+   HERO SECTION - Enhanced Design
+   ======================================== */
+
 .hero-section {
   min-height: 100vh;
   display: flex;
@@ -6,145 +10,426 @@
   position: relative;
   overflow: hidden;
   padding-top: 80px;
+  background: var(--background);
 }
 
+/* Vibrant Gradient Overlay for Light Theme */
+.hero-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at top,
+    rgba(78, 58, 251, 0.15),
+    rgba(107, 78, 255, 0.1),
+    transparent 70%
+  );
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Dark theme specific overlay */
+[data-theme="dark"] .hero-section::before {
+  background: radial-gradient(
+    ellipse at top,
+    rgba(78, 58, 251, 0.25),
+    rgba(107, 78, 255, 0.15),
+    transparent 70%
+  );
+}
+
+/* Animated Background */
 .hero-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
-  opacity: 0.3;
   overflow: hidden;
 }
 
+/* Light theme - more visible liquid crystal */
 .hero-liquid-bg {
   width: 100%;
   height: 100%;
-  filter: blur(40px) saturate(1.5);
-  transform: scale(1.1);
+  filter: blur(60px) saturate(2) contrast(1.2);
+  transform: scale(1.2);
+  opacity: 0.5;
 }
 
+[data-theme="dark"] .hero-liquid-bg {
+  filter: blur(40px) saturate(1.5);
+  opacity: 0.3;
+}
+
+/* Tech Grid with better visibility */
 .hero-tech-grid {
   position: absolute;
   inset: 0;
   background-image: 
-    linear-gradient(var(--grid-color) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
-  background-size: 50px 50px;
-  opacity: 0.4;
+    linear-gradient(var(--grid-color) 1.5px, transparent 1.5px),
+    linear-gradient(90deg, var(--grid-color) 1.5px, transparent 1.5px);
+  background-size: 60px 60px;
+  opacity: 0.2;
   animation: gridPulse 4s ease-in-out infinite;
 }
 
+[data-theme="dark"] .hero-tech-grid {
+  opacity: 0.4;
+  background-image: 
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Animated Scan Line */
 .hero-scan-line {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 3px;
+  height: 4px;
   background: linear-gradient(
     90deg,
     transparent,
-    var(--scan-line),
+    var(--neon-primary),
     transparent
   );
+  box-shadow: 0 0 20px var(--neon-glow);
   animation: scanLine 3s linear infinite;
   z-index: 1;
 }
 
+/* Floating Decorative Shapes */
 .hero-shape {
   position: absolute;
   width: 150px;
   height: 150px;
   object-fit: contain;
   filter: drop-shadow(0 0 30px var(--primary));
+  opacity: 0.15;
+  animation: floatingTech 8s ease-in-out infinite;
+}
+
+[data-theme="dark"] .hero-shape {
+  opacity: 0.2;
 }
 
 .hero-shape-1 {
   top: 10%;
   left: 10%;
+  animation-delay: 0s;
 }
 
 .hero-shape-2 {
   top: 60%;
   right: 15%;
+  animation-delay: 1.5s;
 }
 
 .hero-shape-3 {
   bottom: 15%;
   left: 20%;
+  animation-delay: 3s;
 }
 
+/* Content Container */
 .hero-content {
   text-align: center;
   position: relative;
-  z-index: 1;
-  max-width: 900px;
+  z-index: 2;
+  max-width: 1000px;
   margin: 0 auto;
+  padding: 2rem;
 }
 
+/* Enhanced readability overlay */
 .hero-content::before {
   content: '';
   position: absolute;
-  inset: -100%;
+  inset: -50%;
   background: radial-gradient(
     circle at center,
-    transparent 0%,
-    rgba(0, 0, 0, 0.3) 100%
+    var(--background) 0%,
+    transparent 60%
   );
+  opacity: 0.8;
   z-index: -1;
   pointer-events: none;
+  filter: blur(50px);
 }
 
+/* Hero Title - Vibrant Gradient */
 .hero-title {
+  font-family: var(--font-heading);
   font-size: clamp(2.5rem, 8vw, 7rem);
-  font-weight: 700;
+  font-weight: 900;
   margin-bottom: var(--spacing-xl);
-  background: linear-gradient(135deg, var(--primary), var(--text-primary));
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+/* Multi-layer gradient effect for better visibility */
+.hero-title span {
+  background: linear-gradient(
+    135deg,
+    #4E3AFB 0%,
+    #6B4EFF 25%,
+    #8B6EFF 50%,
+    #4E3AFB 75%,
+    #6B4EFF 100%
+  );
+  background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  letter-spacing: -0.03em;
-  line-height: 1;
+  animation: holographicShimmer 8s ease-in-out infinite;
+  display: inline-block;
+  position: relative;
+  filter: drop-shadow(0 4px 20px rgba(78, 58, 251, 0.3));
 }
 
+/* Dark theme title adjustment */
+[data-theme="dark"] .hero-title span {
+  background: linear-gradient(
+    135deg,
+    #6B4EFF 0%,
+    #8B6EFF 25%,
+    #AB8EFF 50%,
+    #6B4EFF 75%,
+    #8B6EFF 100%
+  );
+  background-size: 200% 200%;
+  filter: drop-shadow(0 4px 30px rgba(107, 78, 255, 0.5));
+}
+
+/* Title glow effect */
+.hero-title::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: blur(30px);
+  opacity: 0.5;
+  z-index: -1;
+}
+
+/* Subtitle - Enhanced Contrast */
 .hero-subtitle {
   margin-bottom: var(--spacing-2xl);
+  position: relative;
 }
 
 .hero-subtitle p {
-  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  font-size: clamp(1.1rem, 2.5vw, 1.6rem);
   font-weight: 500;
-  margin: var(--spacing-sm) 0;
-  color: var(--text-secondary);
-  line-height: 1.5;
+  margin: var(--spacing-md) 0;
+  color: var(--text-primary);
+  line-height: 1.6;
+  opacity: 0.9;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+[data-theme="dark"] .hero-subtitle p {
+  color: var(--text-secondary);
+  opacity: 0.95;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Add decorative line under subtitle */
+.hero-subtitle::after {
+  content: '';
+  display: block;
+  width: 100px;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--neon-primary),
+    transparent
+  );
+  margin: var(--spacing-lg) auto 0;
+  border-radius: 2px;
+  box-shadow: 0 0 10px var(--neon-glow);
+}
+
+/* Buttons Container */
 .hero-buttons {
   display: flex;
   gap: var(--spacing-lg);
   justify-content: center;
   flex-wrap: wrap;
+  position: relative;
 }
 
+/* Add subtle glow to button container */
+.hero-buttons::before {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  background: radial-gradient(
+    circle,
+    var(--neon-glow) 0%,
+    transparent 70%
+  );
+  opacity: 0.3;
+  z-index: -1;
+  pointer-events: none;
+  filter: blur(20px);
+}
+
+/* Floating particles decoration */
+@keyframes floatParticle {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-30px) translateX(15px);
+    opacity: 0.6;
+  }
+}
+
+/* Add particle effect layers */
+.hero-section::after {
+  content: '';
+  position: absolute;
+  top: 20%;
+  right: 10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(
+    circle,
+    rgba(107, 78, 255, 0.2),
+    transparent 70%
+  );
+  border-radius: 50%;
+  filter: blur(60px);
+  animation: floatParticle 8s ease-in-out infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Light theme specific enhancements */
+[data-theme="light"] .hero-section {
+  background: linear-gradient(
+    180deg,
+    #FFFFFF 0%,
+    #F8F9FF 50%,
+    #FFFFFF 100%
+  );
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
   .hero-section {
     min-height: calc(100vh - 60px);
+    padding-top: 100px;
+  }
+
+  .hero-content {
+    padding: 1rem;
   }
 
   .hero-shape {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
+    opacity: 0.1;
   }
 
   .hero-subtitle p {
-    font-size: var(--font-size-base);
+    font-size: clamp(1rem, 4vw, 1.2rem);
   }
 
   .hero-buttons {
     flex-direction: column;
     width: 100%;
+    gap: var(--spacing-md);
   }
 
-  .hero-buttons button {
+  .hero-buttons button,
+  .hero-buttons a {
     width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+
+  .hero-subtitle p {
+    font-size: 1rem;
+  }
+}
+
+/* Performance optimizations */
+.hero-liquid-bg,
+.hero-tech-grid,
+.hero-scan-line,
+.hero-shape {
+  will-change: transform, opacity;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .hero-tech-grid,
+  .hero-scan-line,
+  .hero-shape,
+  .hero-section::after {
+    animation: none !important;
+  }
+
+  .hero-title span {
+    animation: none !important;
+  }
+
+  .hero-liquid-bg {
+    animation: none !important;
+    filter: blur(60px) saturate(1.5);
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .hero-title span {
+    -webkit-text-fill-color: var(--neon-primary);
+  }
+
+  .hero-subtitle p {
+    color: var(--text-primary);
+    opacity: 1;
+  }
+
+  .hero-bg {
+    opacity: 0.1;
+  }
+}
+
+/* Print styles */
+@media print {
+  .hero-bg,
+  .hero-tech-grid,
+  .hero-scan-line,
+  .hero-shape,
+  .hero-section::before,
+  .hero-section::after {
+    display: none;
+  }
+
+  .hero-section {
+    min-height: auto;
+    padding: 2rem 0;
+  }
+
+  .hero-title span {
+    -webkit-text-fill-color: #000;
+    background: none;
   }
 }
