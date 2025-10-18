@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from 'react';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { LanguageProvider } from './contexts/LanguageContext';
 import { ErrorBoundary } from './components/ui/ErrorBoundary';
+import { SEOHead } from './components/ui/SEOHead';
 import { Header } from './components/layout/Header';
 import { Footer } from './components/layout/Footer';
 import { MobileTabBar } from './components/layout/MobileTabBar';
@@ -53,6 +54,7 @@ export const App = () => {
     <ErrorBoundary fallbackMessage="Unable to load the application. Please refresh the page.">
       <ThemeProvider>
         <LanguageProvider>
+          <SEOHead />
           <div className="app">
             <ErrorBoundary fallbackMessage="Navigation error occurred.">
               <Header />
