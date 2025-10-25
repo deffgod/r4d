@@ -20,7 +20,7 @@ export const AdvantagesSection = () => {
           {t.advantages.title}
         </motion.h2>
 
-        <div className="advantages-grid">
+        <div className="advantages-grid ">
           {t.advantages.items.map((advantage, index) => (
             <motion.div
               key={index}

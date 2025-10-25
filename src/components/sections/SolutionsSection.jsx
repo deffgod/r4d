@@ -4,7 +4,15 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import { Card } from '../ui/Card';
 import './SolutionsSection.css';
+import { Sparkles, Zap, Shield, Rocket } from 'lucide-react';
 
+const solutionIcons = {
+  'Sparkles': Sparkles,
+  'Zap': Zap,
+  'Shield': Shield,
+  'Rocket': Rocket
+};
+  
 export const SolutionsSection = () => {
   const { t } = useLanguage();
   const { ref, inView } = useScrollAnimation();
@@ -33,7 +41,7 @@ export const SolutionsSection = () => {
         <div className="solutions-grid">
           {t.solutions.items.map((solution, index) => (
             <motion.div
-              key={index}
+              key={`solution-${solution.title}`}
               initial={{ opacity: 0, y: 50 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}

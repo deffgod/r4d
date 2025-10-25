@@ -27,7 +27,7 @@ export const BurgerMenu = ({ isOpen, onClose, onNavClick }) => {
     onClose();
   };
 
-  const logoSrc = theme === 'dark' ? '/logo/R4D-white.svg' : '/logo/R4D-indigo.svg';
+  const logoSrc = theme === 'dark' ? '/logo/logo-r4d-1024x1024-frame.svg' : '/logo/logo-r4d-1024x1024-frame.svg';
 
   return (
     <div className={`burger-menu ${isOpen ? 'burger-menu-open' : ''}`}>

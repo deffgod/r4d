@@ -2,23 +2,32 @@ import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
+import { TrendingUp, Globe, Zap, Rocket } from 'lucide-react';
 import './StatsSection.css';
 
 /**
  * StatsSection Component
- * Modern feature cards design inspired by 21st.dev
- * 2x2 grid layout on desktop, stacked on mobile
- * Preserves all text content with enhanced visual design
+ * Modern feature-oriented design with horizontal cards
+ * Inspired by 21st.dev feature sections
+ * Icon-enhanced stats with better visual hierarchy
  */
 
-// Individual Stat Card with hover effects
+// Icon mapping for each stat
+const getStatIcon = (index) => {
+  const icons = [TrendingUp, Globe, Zap, Rocket];
+  return icons[index] || TrendingUp;
+};
+
+// Individual Stat Card with icon and enhanced design
 const StatCard = ({ stat, index, inView }) => {
+  const Icon = getStatIcon(index);
+  
   // Staggered entrance animation
   const cardVariants = useMemo(() => ({
     hidden: { 
       opacity: 0, 
-      y: 40,
-      scale: 0.95
+      y: 60,
+      scale: 0.9
     },
     visible: { 
       opacity: 1, 
@@ -26,99 +35,79 @@ const StatCard = ({ stat, index, inView }) => {
       scale: 1,
       transition: {
         type: "spring",
-        stiffness: 80,
-        damping: 15,
-        delay: index * 0.12
+        stiffness: 100,
+        damping: 20,
+        delay: index * 0.15
       }
     }
   }), [index]);
 
-  // Value pop-in animation
-  const valueVariants = useMemo(() => ({
+  // Icon animation
+  const iconVariants = useMemo(() => ({
     hidden: { 
-      scale: 0.5,
-      opacity: 0
+      scale: 0,
+      rotate: -180
     },
     visible: { 
       scale: 1,
-      opacity: 1,
+      rotate: 0,
       transition: {
         type: "spring",
-        stiffness: 150,
-        damping: 12,
-        delay: index * 0.12 + 0.2
-      }
-    }
-  }), [index]);
-
-  // Label fade-in animation
-  const labelVariants = useMemo(() => ({
-    hidden: { 
-      opacity: 0,
-      y: 10
-    },
-    visible: { 
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        delay: index * 0.12 + 0.4,
-        ease: "easeOut"
+        stiffness: 200,
+        damping: 15,
+        delay: index * 0.15 + 0.3
       }
     }
   }), [index]);
 
   return (
     <motion.div
-      className="stat-card"
+      className="stat-card-modern"
       variants={cardVariants}
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
       whileHover={{ 
-        y: -8,
+        y: -12,
+        scale: 1.02,
         transition: { duration: 0.3, ease: "easeOut" }
       }}
     >
-      {/* Top gradient accent line */}
-      <div className="stat-card-accent" />
+      {/* Animated background glow */}
+      <div className="stat-card-glow" />
       
-      {/* Subtle animated background gradient */}
+      {/* Icon container */}
       <motion.div 
-        className="stat-card-gradient"
-        animate={{
-          opacity: [0.8, 1, 0.8],
-          scale: [1, 1.1, 1]
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
+        className="stat-icon-container"
+        variants={iconVariants}
+        initial="hidden"
+        animate={inView ? "visible" : "hidden"}
+      >
+        <Icon className="stat-icon" />
+      </motion.div>
 
       {/* Content */}
-      <div className="stat-content">
-        <motion.h3 
-          className="stat-value"
-          variants={valueVariants}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
+      <div className="stat-content-modern">
+        <motion.div 
+          className="stat-value-modern"
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ delay: index * 0.15 + 0.4 }}
         >
           {stat.value}
-        </motion.h3>
+        </motion.div>
         
-        <motion.p 
-          className="stat-label"
-          variants={labelVariants}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
+        <motion.div 
+          className="stat-label-modern"
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ delay: index * 0.15 + 0.5 }}
         >
           {stat.label}
-        </motion.p>
+        </motion.div>
       </div>
 
-      {/* Shine effect on hover */}
-      <div className="stat-card-shine" />
+      {/* Decorative corner element */}
+      <div className="stat-corner-accent" />
     </motion.div>
   );
 };
@@ -131,15 +120,13 @@ export const StatsSection = () => {
   const titleVariants = useMemo(() => ({
     hidden: { 
       opacity: 0, 
-      y: 30,
-      scale: 0.95
+      y: 40
     },
     visible: { 
       opacity: 1, 
       y: 0,
-      scale: 1,
       transition: {
-        duration: 0.7,
+        duration: 0.8,
         ease: "easeOut"
       }
     }
@@ -149,42 +136,45 @@ export const StatsSection = () => {
   const taglineVariants = useMemo(() => ({
     hidden: { 
       opacity: 0, 
-      y: 20
+      y: 30
     },
     visible: { 
       opacity: 1, 
       y: 0,
       transition: {
-        duration: 0.6,
-        delay: 0.6,
+        duration: 0.7,
+        delay: 0.8,
         ease: "easeOut"
       }
     }
   }), []);
 
   return (
-    <section id="about" className="stats-section section" ref={ref}>
-      {/* Subtle dotted background pattern */}
-      <div className="stats-bg">
-        <div className="stats-grid"></div>
+    <section id="about" className="stats-section-modern section card " ref={ref}>
+      {/* Gradient background effects */}
+      <div className="stats-bg-modern">
+        <div className="gradient-orb gradient-orb-1" />
+        <div className="gradient-orb gradient-orb-2" />
       </div>
 
       <div className="container">
-        {/* Section Title */}
-        <motion.h2 
-          className="stats-title"
-          variants={titleVariants}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-        >
-          {t.stats.title}
-        </motion.h2>
+        {/* Section Header */}
+        <div className="stats-header-modern">
+          <motion.h2 
+            className="stats-title-modern"
+            variants={titleVariants}
+            initial="hidden"
+            animate={inView ? "visible" : "hidden"}
+          >
+            {t.stats.title}
+          </motion.h2>
+        </div>
 
-        {/* Stats Grid - 2x2 on desktop, stacked on mobile */}
-        <div className="stats-grid">
+        {/* Stats Grid - Horizontal cards */}
+        <div className="stats-grid-modern">
           {t.stats.items.map((stat, index) => (
             <StatCard 
-              key={`stat-${index}`}
+              key={`stat-${stat.value}-${stat.label}`}
               stat={stat} 
               index={index} 
               inView={inView}
@@ -192,15 +182,17 @@ export const StatsSection = () => {
           ))}
         </div>
 
-        {/* Tagline with decorative quotes */}
-        <motion.p 
-          className="stats-tagline"
+        {/* Tagline with modern styling */}
+        <motion.div
+          className="stats-tagline-modern"
           variants={taglineVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
         >
-          {t.stats.tagline}
-        </motion.p>
+          <div className="tagline-accent-line" />
+          <p className="tagline-text">{t.stats.tagline}</p>
+          <div className="tagline-accent-line" />
+        </motion.div>
       </div>
     </section>
   );

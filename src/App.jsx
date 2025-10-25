@@ -10,6 +10,8 @@ import { Ticker } from './components/ui/Ticker';
 import { HeroSection } from './components/sections/HeroSection';
 import { useMediaQuery } from './hooks/useMediaQuery';
 import './App.css';
+import './styles/typography.css';
+import './styles/linear-variables.css';
 
 // Lazy load sections for better performance (code splitting)
 const StatsSection = lazy(() => import('./components/sections/StatsSection').then(m => ({ default: m.StatsSection })));
@@ -18,6 +20,7 @@ const SolutionsSection = lazy(() => import('./components/sections/SolutionsSecti
 const AdvantagesSection = lazy(() => import('./components/sections/AdvantagesSection').then(m => ({ default: m.AdvantagesSection })));
 const CTASection = lazy(() => import('./components/sections/CTASection').then(m => ({ default: m.CTASection })));
 const ContactSection = lazy(() => import('./components/sections/ContactSection').then(m => ({ default: m.ContactSection })));
+ 
 
 /**
  * Loading fallback component for Suspense boundaries
@@ -64,6 +67,11 @@ export const App = () => {
               {/* Hero loads immediately - critical for FCP/LCP */}
               <ErrorBoundary fallbackMessage="Hero section unavailable.">
                 <HeroSection />
+              </ErrorBoundary>
+
+              {/* Ticker between Hero and Stats sections */}
+              <ErrorBoundary>
+                <Ticker />
               </ErrorBoundary>
 
               {/* Below-fold sections load lazily */}

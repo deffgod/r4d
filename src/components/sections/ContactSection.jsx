@@ -4,13 +4,16 @@ import { useLanguage } from '../../contexts/LanguageContext';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import { ContactForm } from '../forms/ContactForm';
 import './ContactSection.css';
+import { GlassCard } from '../ui/GlassCard';
+import { Card } from '../ui/Card';
+
 
 export const ContactSection = () => {
   const { t } = useLanguage();
   const { ref, inView } = useScrollAnimation();
 
   return (
-    <section id="contact" className="contact-section section" ref={ref}>
+    <section id="contacts" className="contact-section section card " ref={ref}>
       <div className="container">
         <motion.h2
           className="contact-title"
@@ -31,20 +34,22 @@ export const ContactSection = () => {
         </motion.p>
 
         <motion.div
-          className="contact-content"
+          className="contact-content "
           initial={{ opacity: 0, y: 50 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <div className="contact-info">
             <div className="contact-info-item">
-              <h3>{t.contact.email.label}</h3>
-              <a href={`mailto:${t.contact.email.value}`}>
-                {t.contact.email.value}
-              </a>
+              <GlassCard>
+                <h3>{t.contact.email.label}</h3>
+                <a href={`mailto:${t.contact.email.value}`}>
+                  {t.contact.email.value}
+                </a>
+              </GlassCard>
             </div>
             
-            <div className="contact-info-item">
+            <div className="contact-info-item glass-card-component">
               <h3>{t.contact.telegram.label}</h3>
               <a href={t.contact.telegram.value} target="_blank" rel="noopener noreferrer">
                 @r4dpartners
@@ -52,7 +57,7 @@ export const ContactSection = () => {
             </div>
           </div>
 
-          <div className="contact-form-wrapper">
+          <div className="contact-form-wrapper card glass-card-component">
             <ContactForm />
           </div>
         </motion.div>

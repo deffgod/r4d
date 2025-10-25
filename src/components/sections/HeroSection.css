@@ -3,13 +3,15 @@
    ======================================== */
 
 .hero-section {
-  min-height: 100vh;
+  min-height:100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
-  padding-top: 80px;
+  padding: 100px 10px 10px 10px;
+  margin-bottom: 10px;
   background: var(--background);
 }
 
@@ -19,19 +21,6 @@
   inset: 0;
   z-index: 0;
   overflow: hidden;
-}
-
-.hero-grid {
-  position: absolute;
-  inset: 0;
-  background-image: 
-    radial-gradient(circle at 2px 2px, var(--border) 1px, transparent 0);
-  background-size: 50px 50px;
-  opacity: 0.4;
-}
-
-[data-theme="dark"] .hero-grid {
-  opacity: 0.2;
 }
 
 /* Floating gradient orbs */
@@ -76,20 +65,75 @@
 
 /* Content Container */
 .hero-content {
-  text-align: center;
   position: relative;
-  z-index: 1;
-  max-width: 1000px;
+  z-index: 2;
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1.5rem 2rem;
+}
+
+.hero-content-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+/* Two Column Grid Layout */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 480px 1fr;
+  gap: 2.0rem;
+  align-items: start;
+  margin-bottom: 2rem;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+/* Left Column */
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex;
+  gap: 0.2rem;
+  padding-top: 0.2rem;
+}
+
+/* Text Logo Below 3D Cube */
+.hero-text-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-logo-image {
+  width: 200px;
+  height: auto;
+  filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.4));
+  transition: all 0.3s ease;
+}
+
+.hero-logo-image:hover {
+  filter: drop-shadow(0 0 30px rgba(99, 102, 241, 0.6));
+  transform: scale(1.05);
+}
+
+/* Right Column */
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: left;
 }
 
 /* Title with Gradient Effect */
 .hero-title {
   font-family: var(--font-heading);
-  font-size: clamp(2.5rem, 8vw, 7rem);
+  font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 800;
-  margin-bottom: var(--spacing-xl);
+  margin-bottom: 0;
   letter-spacing: -0.03em;
   line-height: 1.1;
 }
@@ -153,32 +197,141 @@
   background-clip: text;
 }
 
-/* Subtitle - Clean and Modern */
-.hero-subtitle {
-  margin-bottom: var(--spacing-2xl);
+/* Subtitle Cards - Modern Bullet Cards */
+.hero-subtitle-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
 }
 
-.hero-subtitle p {
-  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-  font-weight: 400;
-  margin: var(--spacing-sm) 0;
-  color: var(--text-secondary);
-  line-height: 1.7;
+/* Individual Subtitle Card */
+.hero-subtitle-card {
+  position: relative;
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 0.875rem 1rem;
+  cursor: default;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 
+    0 2px 12px rgba(0, 0, 0, 0.04),
+    0 1px 4px rgba(0, 0, 0, 0.02);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.875rem;
+  text-align: left;
+  width: 100%;
 }
 
-/* Add subtle emphasis to subtitle */
-.hero-subtitle p:nth-child(2) {
+.hero-subtitle-card:hover {
+  border-color: var(--primary);
+  box-shadow: 
+    0 8px 32px rgba(78, 58, 251, 0.12),
+    0 4px 16px rgba(78, 58, 251, 0.08);
+}
+
+[data-theme="dark"] .hero-subtitle-card {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 2px 12px rgba(0, 0, 0, 0.3),
+    0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .hero-subtitle-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--primary);
+  box-shadow: 
+    0 8px 32px rgba(78, 58, 251, 0.2),
+    0 4px 16px rgba(78, 58, 251, 0.15);
+}
+
+/* Icon Wrapper with Gradient */
+.hero-card-icon-wrapper {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    0 4px 16px rgba(78, 58, 251, 0.2),
+    0 2px 8px rgba(78, 58, 251, 0.1);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.hero-subtitle-card:hover .hero-card-icon-wrapper {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 
+    0 6px 24px rgba(78, 58, 251, 0.3),
+    0 3px 12px rgba(78, 58, 251, 0.2);
+}
+
+[data-theme="dark"] .hero-card-icon-wrapper {
+  background: linear-gradient(135deg, #6B4EFF, #8B6EFF);
+  box-shadow: 
+    0 4px 16px rgba(107, 78, 255, 0.25),
+    0 2px 8px rgba(107, 78, 255, 0.15);
+}
+
+/* Icon */
+.hero-card-icon {
+  width: 18px;
+  height: 18px;
+  color: white;
+  stroke-width: 2px;
+}
+
+/* Card Text */
+.hero-card-text {
+  font-size: 0.9375rem;
   font-weight: 500;
   color: var(--text-primary);
+  line-height: 1.4;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Gradient decorative line */
+.hero-card-gradient-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--primary),
+    var(--accent),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.hero-subtitle-card:hover .hero-card-gradient-line {
+  opacity: 1;
 }
 
 /* Buttons Container with Glass Effect */
 .hero-buttons {
   display: flex;
-  gap: var(--spacing-lg);
+  gap: var(--spacing-md);
   justify-content: center;
   flex-wrap: wrap;
+  flex-direction: row;
   position: relative;
+  z-index: 2;
+  padding: 2rem 0 0 0;
+  margin-top: 1rem;
+  width: 100%;
 }
 
 /* Add subtle backdrop glow */
@@ -224,11 +377,35 @@
 }
 
 .hero-buttons .btn:hover::before {
-  width: 300px;
-  height: 300px;
+  width: 200px;
+  height: 200px;
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .hero-right {
+    text-align: center;
+  }
+
+  .hero-title {
+    text-align: center;
+  }
+
+  .hero-subtitle-cards {
+    align-items: center;
+  }
+
+  .hero-subtitle-card {
+    max-width: 500px;
+  }
+}
+
 @media (max-width: 768px) {
   .hero-section {
     min-height: calc(100vh - 60px);
@@ -251,14 +428,45 @@
     bottom: 10%;
   }
 
-  .hero-subtitle p {
-    font-size: clamp(1rem, 4vw, 1.2rem);
+  .hero-grid {
+    gap: 1.5rem;
+  }
+
+  .hero-logo-image {
+    width: 140px;
+  }
+
+  .hero-subtitle-cards {
+    gap: 0.75rem;
+  }
+
+  .hero-subtitle-card {
+    padding: 0.875rem 1rem;
+    flex-direction: row;
+    text-align: left;
+  }
+
+  .hero-card-icon-wrapper {
+    width: 36px;
+    height: 36px;
+  }
+
+  .hero-card-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .hero-card-text {
+    font-size: 0.875rem;
   }
 
   .hero-buttons {
     flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
     width: 100%;
-    gap: var(--spacing-md);
+    gap: var(--spacing-sm);
+    padding: 1.5rem 0 0 0;
   }
 
   .hero-buttons button {
@@ -268,11 +476,34 @@
 
 @media (max-width: 480px) {
   .hero-title {
-    font-size: clamp(2rem, 10vw, 3rem);
+    font-size: clamp(1.75rem, 10vw, 2.5rem);
   }
 
-  .hero-subtitle p {
-    font-size: 1rem;
+  .hero-logo-image {
+    width: 120px;
+  }
+
+  .hero-subtitle-cards {
+    gap: 0.625rem;
+  }
+
+  .hero-subtitle-card {
+    padding: 0.75rem 0.875rem;
+  }
+
+  .hero-card-icon-wrapper {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+  }
+
+  .hero-card-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .hero-card-text {
+    font-size: 0.8125rem;
   }
 
   .hero-gradient-orb-1,
@@ -289,14 +520,23 @@
     animation: none !important;
   }
 
-  .hero-buttons .btn::before {
+  .hero-buttons .btn::before,
+  .hero-subtitle-card,
+  .hero-card-icon-wrapper,
+  .hero-card-gradient-line {
     transition: none;
+  }
+
+  .hero-subtitle-card:hover {
+    transform: none;
   }
 }
 
 /* Performance optimization */
 .hero-gradient-orb,
-.hero-title-gradient {
+.hero-title-gradient,
+.hero-subtitle-card,
+.hero-card-icon-wrapper {
   will-change: transform, opacity;
 }
 
@@ -304,7 +544,8 @@
 @media print {
   .hero-bg,
   .hero-gradient-orb-1,
-  .hero-gradient-orb-2 {
+  .hero-gradient-orb-2,
+  .hero-card-gradient-line {
     display: none;
   }
 
@@ -317,4 +558,16 @@
     -webkit-text-fill-color: var(--text-primary);
     background: none;
   }
+
+  .hero-subtitle-card {
+    break-inside: avoid;
+    border: 1px solid #ccc;
+    box-shadow: none;
+    transform: none !important;
+  }
+
+  .hero-card-icon-wrapper {
+    box-shadow: none;
+  }
 }
+

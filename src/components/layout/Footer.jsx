@@ -7,7 +7,7 @@ export const Footer = () => {
   const { t } = useLanguage();
   const { theme } = useTheme();
 
-  const logoSrc = theme === 'dark' ? '/logo/R4D-white.svg' : '/logo/R4D-indigo.svg';
+  const logoSrc = theme === 'dark' ? '/logo/logo-r4d-1024x1024-frame.svg' : '/logo/logo-r4d-1024x1024-frame.svg';
 
   return (
     <footer className="footer">

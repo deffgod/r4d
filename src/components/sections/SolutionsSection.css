@@ -25,10 +25,16 @@
 
 .solutions-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
+}
+
+.solutions-grid > * {
+  display: flex;
+  height: 100%;
+  width: 100%;
 }
 
 @media (max-width: 768px) {
@@ -39,5 +45,10 @@
   .solutions-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+  }
+
+  .solutions-grid > * {
+    width: 100%;
+    max-width: 100%;
   }
 }

@@ -1,18 +1,68 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
+import { Users, TrendingUp, Zap } from 'lucide-react';
 import './SegmentsSection.css';
 
 const segmentIcons = {
-  'iGaming': '/coolshapes/CS_Star_5.png',
-  'Crypto-iGaming': '/coolshapes/CS_Flower_8.png',
-  'Игровые кейсы': '/coolshapes/CS_Wheel_4.png',
-  'Game Studios': '/coolshapes/CS_Wheel_4.png',
-  'Агрегаторы': '/coolshapes/CS_Polygon_7.png',
-  'Aggregators': '/coolshapes/CS_Polygon_7.png',
-  'Crypto': '/coolshapes/CS_Moon_6.png',
-  'Dating': '/coolshapes/CS_Triangle_8.png'
+  'iGaming': '/icons/frankenstein-front-color.png',
+  'Crypto-iGaming': '/icons/zombie-front-color.png',
+  'LootBoxes': '/icons/candy-dynamic-color.png',
+  'Агрегаторы': '/icons/candy-dynamic-color.png',
+  'Aggregators': '/icons/folder-dynamic-color.png',
+  'Crypto': '/icons/rocket-dynamic-color.png',
+  'Dating': '/icons/map-pin-dynamic-color.png'
+};
+
+// Icon mapping for subtitle items
+const getSubtitleIcon = (index) => {
+  const icons = [Users, TrendingUp, Zap];
+  return icons[index] || Users;
+};
+
+// Subtitle Bullet Card Component
+const SubtitleCard = ({ text, index, inView }) => {
+  const Icon = getSubtitleIcon(index);
+  
+  const cardVariant = useMemo(() => ({
+    hidden: { opacity: 0, y: 20, scale: 0.95 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.5,
+        delay: 0.3 + (index * 0.1),
+        ease: "easeOut"
+      }
+    }
+  }), [index]);
+
+  return (
+    <motion.div
+      className="segments-subtitle-card"
+      variants={cardVariant}
+      initial="hidden"
+      animate={inView ? "visible" : "hidden"}
+      whileHover={{ 
+        y: -5,
+        scale: 1.02,
+        transition: { duration: 0.2 }
+      }}
+    >
+      {/* Icon container with gradient */}
+      <div className="segments-card-icon-wrapper">
+        <Icon className="segments-card-icon" />
+      </div>
+      
+      {/* Text content */}
+      <p className="segments-card-text">{text}</p>
+      
+      {/* Decorative gradient line */}
+      <div className="segments-card-gradient-line" />
+    </motion.div>
+  );
 };
 
 export const SegmentsSection = () => {
@@ -31,27 +81,28 @@ export const SegmentsSection = () => {
           {t.segments.title}
         </motion.h2>
 
-        <motion.div
-          className="segments-subtitle"
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
+        {/* Subtitle Cards Grid */}
+        <div className="segments-subtitle-cards">
           {t.segments.subtitle.map((line, index) => (
-            <p key={index}>{line}</p>
+            <SubtitleCard 
+              key={`segments-subtitle-${line.substring(0, 20)}`}
+              text={line}
+              index={index}
+              inView={inView}
+            />
           ))}
-        </motion.div>
+        </div>
 
         <div className="segments-grid">
           {t.segments.items.map((segment, index) => (
             <motion.div
-              key={index}
+              key={`segment-${segment}`}
               className="segment-card"
               initial={{ opacity: 0, y: 50 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ 
                 duration: 0.5, 
-                delay: index * 0.1,
+                delay: 0.6 + (index * 0.1),
                 type: "spring",
                 stiffness: 100
               }}
@@ -77,7 +128,7 @@ export const SegmentsSection = () => {
                   }}
                 />
               </div>
-              <h3 className="segment-title">{segment}</h3>
+              <h2 className="segment-title">{segment}</h2>
             </motion.div>
           ))}
         </div>

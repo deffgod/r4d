@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../../contexts/LanguageContext';
 import { useScrollAnimation } from '../../hooks/useScrollAnimation';
-import { Button } from '../ui/Button';
+import Button from '../ui/Button';
 import './CTASection.css';
 
 export const CTASection = () => {
@@ -17,8 +17,8 @@ export const CTASection = () => {
   };
 
   return (
-    <section className="cta-section section" ref={ref}>
-      <div className="container">
+    <section className="cta-section linear-section linear-cta-section section" ref={ref}>
+      <div className="container container-linear">
         <motion.div
           className="cta-content"
           initial={{ opacity: 0, scale: 0.95 }}

@@ -11,7 +11,7 @@
 .ticker-content {
   display: flex;
   white-space: nowrap;
-  animation: tickerScroll 30s linear infinite;
+  animation: tickerScroll 10s linear infinite;
 }
 
 .ticker-content span {

@@ -38,7 +38,7 @@ export const content = {
         'Нас выбрали 200+ брендов.',
         'Двигаем капитал, а не хаос.'
       ],
-      items: ['iGaming', 'Crypto-iGaming', 'Игровые кейсы', 'Агрегаторы', 'Crypto', 'Dating']
+      items: ['iGaming', 'Crypto-iGaming', 'LootBoxes', 'Агрегаторы', 'Crypto', 'Dating']
     },
     solutions: {
       title: 'Всё, что нужно для глобальных платежей',
@@ -184,7 +184,7 @@ export const content = {
         '200+ brands in the stream.',
         'We move capital, not chaos.'
       ],
-      items: ['iGaming', 'Crypto-iGaming', 'Game Studios', 'Aggregators', 'Crypto', 'Dating']
+      items: ['iGaming', 'Crypto-iGaming', 'LootBoxes', 'Aggregators', 'Crypto', 'Dating']
     },
     solutions: {
       title: 'Everything you need for global payments',
